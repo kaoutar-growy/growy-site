@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Growy · Autorisations de travail en ligne pour entreprises et salariés étrangers</title>
+<meta name="description" content="Growy prépare, vérifie et dépose en ligne les demandes d'autorisation de travail de vos salariés étrangers. Devis immédiat, mandat signé en ligne, sans rendez-vous.">
+<link rel="canonical" href="https://growy.work/">
+<meta property="og:title" content="Growy · Autorisations de travail en ligne">
+<meta property="og:description" content="Dossier préparé, vérifié et déposé sur l'ANEF pour vos salariés étrangers. 100 % en ligne.">
+<meta property="og:url" content="https://growy.work/">
+<meta property="og:type" content="website">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;800&family=Public+Sans:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout : un dossier administratif qui avance — deux portes d'entrée (entreprise / personne), tampons et cases cochées, devis au centre */
+:root{
+  --bg:#f3f5f8; --ink:#101b2d; --muted:#55627a; --line:#d4dbe6; --card:#ffffff;
+  --go:#127a4a; --go-ink:#ffffff; --stamp:#c2410c;
+  --display:"Archivo", "Helvetica Neue", Arial, sans-serif;
+  --body:"Public Sans", "Segoe UI", Arial, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0c1320; --ink:#e7ecf4; --muted:#9aa8bf; --line:#253247; --card:#121c2c;
+  --go:#3fbf82; --go-ink:#06180f; --stamp:#f08a52; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c1320; --ink:#e7ecf4; --muted:#9aa8bf; --line:#253247; --card:#121c2c;
+  --go:#3fbf82; --go-ink:#06180f; --stamp:#f08a52; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1060px;margin:0 auto;display:grid;gap:64px;padding-block:32px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.08;text-wrap:balance;margin:0}
+h1{font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-.015em}
+h2{font-size:clamp(1.45rem,3vw,2rem)}
+h3{font-size:1.1rem}
+p{margin:0;max-width:62ch}
+.eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.draft{font-family:var(--mono);font-size:.75rem;color:var(--muted);border:1px dashed var(--line);padding:6px 10px;border-radius:4px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.logo{font-family:var(--display);font-weight:800;font-size:1.3rem;display:flex;align-items:center;gap:10px}
+.logo small{font-weight:500;color:var(--muted);font-size:.95rem;font-family:var(--body)}
+.dot{width:14px;height:14px;border-radius:50%;background:var(--go);box-shadow:0 0 0 4px color-mix(in srgb,var(--go) 25%,transparent)}
+section{display:grid;gap:24px}
+.view{display:grid;gap:64px}
+/* the two doors */
+.doors{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.door{display:grid;gap:6px;text-align:left;font:inherit;color:var(--ink);background:var(--card);border:2px solid var(--line);border-radius:10px;padding:18px 20px;cursor:pointer;text-decoration:none}
+.door b{font-family:var(--display);font-size:1.15rem}
+.door span{color:var(--muted);font-size:.95rem}
+.door[aria-current="page"]{border-color:var(--go);box-shadow:0 0 0 4px color-mix(in srgb,var(--go) 15%,transparent)}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.hero>div{display:grid;gap:20px;min-width:0}
+.lede{font-size:1.1rem;color:var(--muted)}
+.btn{font-family:var(--display);font-weight:800;font-size:1rem;border:0;border-radius:6px;padding:14px 20px;cursor:pointer;background:var(--go);color:var(--go-ink);text-decoration:none;display:inline-block}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn:focus-visible,.door:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--stamp);outline-offset:2px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.file{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:22px;display:grid;gap:10px;position:relative;min-width:0}
+.file .h{font-family:var(--mono);font-size:.82rem;color:var(--muted);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.chk{display:flex;gap:10px;align-items:baseline;font-size:.95rem;border-top:1px solid var(--line);padding-top:8px}
+.chk b{color:var(--go);font-family:var(--mono)}
+.stamp{position:absolute;right:18px;bottom:16px;transform:rotate(-8deg);border:3px solid var(--stamp);color:var(--stamp);font-family:var(--display);font-weight:800;padding:4px 12px;border-radius:6px;letter-spacing:.06em;font-size:.95rem}
+.cases{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.case{border-top:3px solid var(--go);padding-top:14px;display:grid;gap:8px;align-content:start}
+.case .n{font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.quote{display:grid;grid-template-columns:1fr 340px;gap:28px;align-items:start}
+.form{display:grid;gap:14px;min-width:0}
+.field{display:grid;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+.field label{font-weight:600}
+select,input{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:10px 12px;width:100%}
+.res{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:22px;display:grid;gap:12px}
+.amt{font-family:var(--display);font-weight:800;font-size:2.4rem;font-variant-numeric:tabular-nums;line-height:1}
+.res ul{margin:0;padding-left:18px;display:grid;gap:4px;font-size:.95rem}
+.small{font-family:var(--mono);font-size:.75rem;color:var(--muted)}
+.prices{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.price{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:22px;display:grid;gap:12px;align-content:start}
+.price.main{border:2px solid var(--go)}
+.price .p{font-family:var(--display);font-weight:800;font-size:2rem;font-variant-numeric:tabular-nums}
+.price .p small{font-size:.9rem;color:var(--muted);font-weight:500}
+.price ul{margin:0;padding-left:18px;display:grid;gap:4px}
+.steps{margin:0;padding:0;list-style:none;display:grid;gap:12px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start;counter-increment:s}
+.steps li::before{content:counter(s);font-family:var(--display);font-weight:800;width:36px;height:36px;border-radius:50%;border:2px solid var(--go);display:grid;place-items:center;color:var(--go)}
+.note{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--stamp);border-radius:6px;padding:14px 16px;font-size:.95rem}
+details{border-bottom:1px solid var(--line);padding-block:12px}
+summary{font-family:var(--display);font-weight:800;cursor:pointer}
+details p{margin-top:8px;color:var(--muted)}
+.mail{font-family:var(--mono);user-select:all;background:var(--card);border:1px solid var(--line);padding:10px 14px;border-radius:6px;justify-self:start}
+@media (max-width:820px){.hero,.quote,.prices{grid-template-columns:1fr}.cases{grid-template-columns:1fr}.res{position:static}}
+@media (max-width:520px){.doors{grid-template-columns:1fr}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="logo"><span class="dot" aria-hidden="true"></span>Growy<small>· autorisations de travail</small></div>
+    
+  </header>
+
+  <nav class="doors" aria-label="Choisir votre profil">
+    <a class="door" href="#entreprise" data-view="entreprise"><b>Vous êtes une entreprise</b><span>Vous recrutez un salarié étranger : nous déposons l'autorisation de travail pour vous.</span></a>
+    <a class="door" href="#particulier" data-view="particulier"><b>Vous êtes une personne</b><span>Vous êtes étranger et vous travaillez ou allez travailler en France : nous préparons votre dossier.</span></a>
+  </nav>
+
+  <!-- ENTREPRISE -->
+  <div class="view" id="v-entreprise">
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Entreprises · 100 % en ligne</span>
+        <h1>Votre futur salarié est étranger ? Son autorisation de travail, on s'en occupe.</h1>
+        <p class="lede">Vous répondez à un questionnaire de 10 minutes et déposez les pièces. Nous montons le dossier, vérifions chaque document et le déposons sur l'ANEF en votre nom, avec un mandat signé en ligne. Aucun rendez-vous, aucun appel.</p>
+        <div class="actions"><a class="btn" href="#e-devis">Calculer mon devis</a><a class="btn ghost" href="#e-offres">Voir les tarifs</a></div>
+      </div>
+      <aside class="file" aria-label="Exemple de dossier entreprise">
+        <div class="h"><span>Dossier n° GW-0127</span><span>Réceptionniste · CDI · Paris</span></div>
+        <div class="chk"><b>✓</b><span>Promesse d'embauche signée</span></div>
+        <div class="chk"><b>✓</b><span>Kbis et attestation URSSAF de moins de 6 mois</span></div>
+        <div class="chk"><b>✓</b><span>Métier en tension vérifié : pas de publication de 3 semaines</span></div>
+        <div class="chk"><b>✓</b><span>Salaire conforme au minimum conventionnel</span></div>
+        <div class="chk"><b>✓</b><span>Mandat signé en ligne</span></div>
+        <div class="chk"><b>→</b><span>Déposé sur l'ANEF, suivi en cours</span></div>
+        <span class="stamp">DÉPOSÉ</span>
+      </aside>
+    </section>
+
+    <section>
+      <span class="eyebrow">Les situations que nous traitons</span>
+      <h2>Trois cas, couverts de bout en bout</h2>
+      <div class="cases">
+        <div class="case"><span class="n">CERFA 15186</span><h3>Vous embauchez un étudiant étranger diplômé</h3><p>Changement de statut étudiant vers salarié, le cas le plus fréquent après une alternance ou un stage.</p></div>
+        <div class="case"><span class="n">CERFA 15187</span><h3>Vous recrutez quelqu'un qui vit hors de France</h3><p>Introduction d'un salarié, avec ou sans publication préalable de l'offre selon le métier.</p></div>
+        <div class="case"><span class="n">Nouveau contrat</span><h3>Votre salarié change de poste ou d'employeur</h3><p>Nouvelle autorisation liée au nouveau contrat.</p></div>
+      </div>
+    </section>
+
+    <section id="e-devis">
+      <span class="eyebrow">Devis immédiat</span>
+      <h2>Combien ça vous coûte, tout compris ?</h2>
+      <div class="quote">
+        <form class="form" id="qe">
+          <div class="field"><label for="sit">Situation</label>
+            <select id="sit"><option value="etu">Étudiant étranger déjà en France</option><option value="ext">Candidat vivant hors de France</option><option value="ren">Changement de poste ou d'employeur</option></select></div>
+          <div class="field"><label for="ten">Le poste est-il un métier en tension dans votre région ?</label>
+            <select id="ten"><option value="oui">Oui</option><option value="non">Non</option><option value="nsp">Je ne sais pas</option></select></div>
+          <div class="field"><label for="dur">Durée du contrat</label>
+            <select id="dur"><option value="12">12 mois ou plus (CDI inclus)</option><option value="3">3 à 11 mois</option></select></div>
+          <div class="field"><label for="sal">Salaire mensuel brut (€)</label>
+            <input id="sal" type="number" inputmode="numeric" min="0" step="50" value="2200"></div>
+          <div class="field"><label for="off">Formule</label>
+            <select id="off"><option value="depot">Dépôt et suivi</option><option value="integral">Intégral</option><option value="kit">Kit prêt à déposer</option></select></div>
+        </form>
+        <aside class="res" aria-live="polite">
+          <span class="eyebrow">Votre estimation</span>
+          <div><div class="small">Notre prestation (HT)</div><div class="amt" id="fee">790 €</div></div>
+          <div><div class="small">Taxe employeur due à l'État, à prévoir</div><div class="amt" style="font-size:1.6rem" id="tax">0 €</div></div>
+          <ul id="notes"></ul>
+          <a class="btn" href="#contact">Démarrer mon dossier</a>
+          <span class="small">Taxe calculée sur le barème 2026, déclarée avec la TVA de l'année suivante. Estimation indicative.</span>
+        </aside>
+      </div>
+    </section>
+
+    <section id="e-offres">
+      <span class="eyebrow">Tarifs entreprises, hors taxes, par salarié</span>
+      <h2>Trois formules, un pack pour les recrutements réguliers</h2>
+      <div class="prices">
+        <div class="price"><h3>Kit prêt à déposer</h3><div class="p">390 €<small> par dossier</small></div>
+          <ul><li>Liste des pièces adaptée à votre cas</li><li>Vérification des documents fournis</li><li>Lettre de recrutement rédigée</li><li>Guide pas à pas du dépôt ANEF</li></ul></div>
+        <div class="price main"><h3>Dépôt et suivi</h3><div class="p">790 €<small> par dossier</small></div>
+          <ul><li>Tout le kit</li><li>Mandat signé électroniquement</li><li>Dépôt sur l'ANEF en votre nom</li><li>Suivi jusqu'à la décision</li></ul></div>
+        <div class="price"><h3>Intégral</h3><div class="p">1 190 €<small> par dossier</small></div>
+          <ul><li>Tout le dépôt et suivi</li><li>Offre France Travail publiée et suivie si elle est exigée</li><li>Réponses aux demandes de pièces</li><li>Suivi du visa ou du titre jusqu'à la délivrance</li></ul></div>
+        <div class="price"><h3>Pack entreprise</h3><div class="p">3 450 €<small> pour 5 dossiers</small></div>
+          <ul><li>Formule Dépôt et suivi</li><li>Valable 12 mois</li><li>Pour l'hôtellerie, le BTP, la propreté et tous les recrutements réguliers</li></ul></div>
+      </div>
+    </section>
+
+    <section>
+      <span class="eyebrow">Comment ça se passe</span>
+      <h2>Du questionnaire au dépôt, sans un seul appel</h2>
+      <ol class="steps">
+        <li><div><h3>Vous répondez au questionnaire</h3><p>Le poste, le contrat, le salaire et la situation du candidat. Dix minutes.</p></div></li>
+        <li><div><h3>Vous déposez les pièces</h3><p>Nous vous indiquons exactement lesquelles, et signalons tout document manquant ou périmé.</p></div></li>
+        <li><div><h3>Vous signez le mandat et réglez en ligne</h3><p>Signature électronique et paiement par carte.</p></div></li>
+        <li><div><h3>Nous déposons et suivons le dossier</h3><p>Vous recevez un e-mail à chaque étape, jusqu'à la décision.</p></div></li>
+      </ol>
+    </section>
+
+    <section>
+      <span class="eyebrow">Questions fréquentes</span>
+      <details><summary>Avez-vous le droit de déposer à ma place ?</summary><p>Oui. Le Code du travail permet à l'employeur de confier la demande à un représentant mandaté par écrit (art. R. 5221-11-1). Le mandat est joint au dossier.</p></details>
+      <details><summary>Combien de temps faut-il ?</summary><p>Le délai d'instruction dépend de l'administration, souvent un à deux mois, parfois davantage. Nous déposons sous 5 jours ouvrés après réception de toutes les pièces.</p></details>
+      <details><summary>Garantissez-vous l'obtention ?</summary><p>Non, la décision appartient à l'administration. Nous garantissons un dossier complet et conforme. Pour un refus ou un recours, nous vous orientons vers un avocat partenaire.</p></details>
+      <details><summary>Traitez-vous les régularisations ?</summary><p>Non. Nous traitons uniquement les embauches et changements de statut décrits plus haut.</p></details>
+    </section>
+  </div>
+
+  <!-- PARTICULIER -->
+  <div class="view" id="v-particulier" hidden>
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Particuliers · 100 % en ligne</span>
+        <h1>Travailler en France : un dossier complet, du premier coup.</h1>
+        <p class="lede">Pour votre titre de séjour salarié, un renouvellement ou un passeport talent, nous vous disons exactement quelles pièces fournir, nous vérifions chacune d'elles et nous préparons votre dossier. Vous le déposez sur l'ANEF en suivant notre guide.</p>
+        <div class="actions"><a class="btn" href="#p-devis">Trouver ma démarche</a><a class="btn ghost" href="#p-offres">Voir les tarifs</a></div>
+      </div>
+      <aside class="file" aria-label="Exemple de dossier particulier">
+        <div class="h"><span>Dossier n° GP-0342</span><span>Étudiante → salariée</span></div>
+        <div class="chk"><b>✓</b><span>Titre de séjour étudiant en cours de validité</span></div>
+        <div class="chk"><b>✓</b><span>Diplôme et contrat de travail vérifiés</span></div>
+        <div class="chk"><b>✓</b><span>Justificatif de domicile de moins de 3 mois</span></div>
+        <div class="chk"><b>✓</b><span>Kit transmis à l'employeur pour sa propre démarche</span></div>
+        <div class="chk"><b>→</b><span>Prêt à déposer sur l'ANEF</span></div>
+        <span class="stamp">COMPLET</span>
+      </aside>
+    </section>
+
+    <section>
+      <span class="eyebrow">Ce que nous faisons pour vous</span>
+      <h2>Trois démarches, et un kit pour votre employeur</h2>
+      <div class="cases">
+        <div class="case"><span class="n">Étudiant → salarié</span><h3>Vous avez trouvé un emploi après vos études</h3><p>Votre demande de titre « salarié » ou « travailleur temporaire », coordonnée avec la démarche de votre employeur.</p></div>
+        <div class="case"><span class="n">Renouvellement</span><h3>Votre titre salarié arrive à échéance</h3><p>Renouvellement, ou mise à jour après un changement d'employeur.</p></div>
+        <div class="case"><span class="n">Passeport talent</span><h3>Vous êtes cadre ou profil qualifié</h3><p>Le titre pluriannuel que vous demandez vous-même, selon votre salaire et votre diplôme.</p></div>
+      </div>
+      <div class="note"><b>Votre employeur doit faire sa part :</b> c'est lui qui demande l'autorisation de travail. Nous vous donnons gratuitement un kit à lui transmettre, qui lui explique la démarche, la taxe et les délais, et comment nous pouvons la faire pour lui.</div>
+    </section>
+
+    <section id="p-devis">
+      <span class="eyebrow">Votre démarche</span>
+      <h2>Quelle est votre situation ?</h2>
+      <div class="quote">
+        <form class="form" id="qp">
+          <div class="field"><label for="psit">Vous êtes…</label>
+            <select id="psit"><option value="etu">Étudiant en France, avec une offre ou un contrat de travail</option><option value="ren">Salarié en France, titre à renouveler</option><option value="emp">Salarié en France, je change d'employeur</option><option value="tal">Cadre ou profil qualifié (passeport talent)</option><option value="aut">Autre situation</option></select></div>
+          <div class="field"><label for="pfin">Fin de validité de votre titre actuel</label>
+            <input id="pfin" type="month"></div>
+        </form>
+        <aside class="res" aria-live="polite">
+          <span class="eyebrow">Notre proposition</span>
+          <div><div class="small">Prix TTC</div><div class="amt" id="pfee">249 €</div></div>
+          <div class="small" id="pname"></div>
+          <ul id="pnotes"></ul>
+          <a class="btn" href="#contact" id="pcta">Préparer mon dossier</a>
+          <span class="small">Droit de rétractation de 14 jours. Aucune garantie de décision : elle appartient à l'administration.</span>
+        </aside>
+      </div>
+    </section>
+
+    <section id="p-offres">
+      <span class="eyebrow">Tarifs particuliers, TTC</span>
+      <h2>Des prix affichés, sans surprise</h2>
+      <div class="prices">
+        <div class="price main"><h3>Étudiant → salarié</h3><div class="p">249 €</div>
+          <ul><li>Liste des pièces adaptée à votre cas</li><li>Vérification de chaque document</li><li>Dossier prêt à déposer et guide ANEF</li><li>Kit pour votre employeur</li></ul></div>
+        <div class="price"><h3>Renouvellement ou changement d'employeur</h3><div class="p">199 €</div>
+          <ul><li>Liste des pièces</li><li>Vérification des documents</li><li>Guide ANEF et rappel avant l'échéance</li></ul></div>
+        <div class="price"><h3>Passeport talent</h3><div class="p">390 €</div>
+          <ul><li>Vérification de l'éligibilité selon les critères publiés</li><li>Dossier complet et vérifié</li><li>Guide de dépôt</li></ul></div>
+        <div class="price"><h3>Kit employeur</h3><div class="p">Gratuit</div>
+          <ul><li>Une page claire à envoyer à votre futur employeur</li><li>La démarche, la taxe et les délais</li><li>Une offre pour qu'il nous confie son dossier</li></ul></div>
+      </div>
+    </section>
+
+    <section>
+      <span class="eyebrow">Questions fréquentes</span>
+      <details><summary>Pouvez-vous demander l'autorisation de travail à la place de mon employeur ?</summary><p>Non, seul l'employeur peut la demander. Il peut en revanche nous la confier : c'est l'objet du kit employeur.</p></details>
+      <details><summary>Me donnez-vous un avis juridique sur mes chances ?</summary><p>Non. Nous préparons et vérifions votre dossier. Pour un avis sur votre situation, un refus ou un recours, nous vous orientons vers un avocat ou une association spécialisée.</p></details>
+      <details><summary>Traitez-vous les régularisations ou les premières demandes sans titre ?</summary><p>Non. Ces situations demandent l'accompagnement d'un avocat ou d'une association.</p></details>
+      <details><summary>Puis-je me rétracter ?</summary><p>Oui, pendant 14 jours après l'achat. Si vous nous demandez de commencer avant la fin de ce délai, le travail déjà réalisé reste dû.</p></details>
+    </section>
+  </div>
+
+  <section id="contact">
+    <h2>On commence ?</h2>
+    <p>Écrivez-nous en précisant si vous êtes une entreprise ou une personne. Le lien du questionnaire vous est envoyé immédiatement.</p>
+    <span class="mail">autorisations@growy.work</span>
+    <a href="/mentions-legales.html" class="small">Mentions légales</a>
+  </section>
+</div>
+
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const eur=v=>v.toLocaleString('fr-FR',{maximumFractionDigits:0})+' €';
+
+  // views
+  const views={entreprise:$('v-entreprise'),particulier:$('v-particulier')};
+  function show(){
+    const h=(location.hash||'').slice(1);
+    const pv=['particulier','p-devis','p-offres'].includes(h)?'particulier':(['entreprise','e-devis','e-offres'].includes(h)?'entreprise':null);
+    const cur=pv||document.body.dataset.view||'entreprise';
+    document.body.dataset.view=cur;
+    Object.entries(views).forEach(([k,el])=>{el.hidden=k!==cur});
+    document.querySelectorAll('.door').forEach(d=>{d.getAttribute('data-view')===cur?d.setAttribute('aria-current','page'):d.removeAttribute('aria-current')});
+  }
+  window.addEventListener('hashchange',show); show();
+
+  // entreprise quote
+  const SMIC=1823.03, T2=2734.55, CAP=4557.58, MAX=2506.67;
+  function runE(){
+    const sit=$('sit').value, ten=$('ten').value, dur=$('dur').value, off=$('off').value;
+    const sal=Math.max(0,Number($('sal').value)||0);
+    const fee=off==='kit'?390:off==='integral'?1190:790;
+    let tax=0;
+    if(sit!=='ren'){ tax = dur==='12' ? (sal>=CAP?MAX:sal*0.55) : (sal<=SMIC?74:sal<=T2?210:300); }
+    $('fee').textContent=eur(fee); $('tax').textContent=eur(tax);
+    const n=[];
+    if(ten==='non')n.push("L'offre doit d'abord être publiée 3 semaines sur France Travail."+(off==='integral'?' Incluse dans votre formule.':' La formule Intégral la prend en charge.'));
+    if(ten==='nsp')n.push('Nous vérifions la liste officielle des métiers en tension de votre région.');
+    if(sit==='etu')n.push('Changement de statut : la demande se fait avant la fin du titre étudiant.');
+    if(sit==='ext')n.push('Après accord, le candidat demande son visa au consulat.');
+    if(sit==='ren')n.push('Taxe : nous vérifions au dossier si elle est due dans votre cas.');
+    const ul=$('notes'); ul.innerHTML=''; n.forEach(t=>{const li=document.createElement('li');li.textContent=t;ul.appendChild(li)});
+  }
+  ['sit','ten','dur','sal','off'].forEach(id=>$(id).addEventListener('input',runE));
+  $('qe').addEventListener('submit',e=>e.preventDefault()); runE();
+
+  // particulier quote
+  const P={
+    etu:{fee:249,name:'Formule Étudiant → salarié',n:['Votre employeur doit déposer l\'autorisation de travail : vous recevez le kit à lui transmettre.','Déposez votre demande avant la fin de votre titre étudiant.']},
+    ren:{fee:199,name:'Formule Renouvellement',n:['La demande se fait en ligne sur l\'ANEF, en général dans les mois qui précèdent l\'échéance.']},
+    emp:{fee:199,name:'Formule Changement d\'employeur',n:['Votre nouvel employeur doit obtenir une autorisation de travail : vous recevez le kit à lui transmettre.']},
+    tal:{fee:390,name:'Formule Passeport talent',n:['Nous vérifions d\'abord que vous remplissez les critères publiés (salaire, diplôme, poste).']},
+    aut:{fee:null,name:'Situation non couverte',n:['Pour une régularisation, un refus ou une situation complexe, nous vous orientons vers un avocat ou une association spécialisée.']}
+  };
+  function runP(){
+    const s=P[$('psit').value];
+    $('pfee').textContent=s.fee==null?'—':eur(s.fee);
+    $('pname').textContent=s.name;
+    const n=[...s.n];
+    const v=$('pfin').value;
+    if(v && s.fee!=null){
+      const [y,m]=v.split('-').map(Number);
+      const now=new Date(); const months=(y-now.getFullYear())*12+(m-1-now.getMonth());
+      if(months<0)n.unshift('Votre titre semble expiré : cette situation demande un avocat ou une association.');
+      else if(months<=2)n.unshift('Échéance proche : déposez au plus vite.');
+      else n.unshift('Il vous reste environ '+months+' mois : le bon moment pour préparer le dossier.');
+    }
+    const ul=$('pnotes'); ul.innerHTML=''; n.forEach(t=>{const li=document.createElement('li');li.textContent=t;ul.appendChild(li)});
+    $('pcta').hidden=s.fee==null;
+  }
+  ['psit','pfin'].forEach(id=>$(id).addEventListener('input',runP));
+  $('qp').addEventListener('submit',e=>e.preventDefault()); runP();
+})();
+</script>
+</body>
+</html>
